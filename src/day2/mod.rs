@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-const INPUT: &str = include_str!("input");
+static INPUT: &str = include_str!("input");
 
 pub fn solve() {
     println!("Day 2, Part 1: {}", part1(INPUT));
@@ -8,15 +8,12 @@ pub fn solve() {
 }
 
 fn part1(input: &str) -> usize {
-    let words = input.lines();
-
-    let num_two_dupes = words.clone()
-        .filter(|word| has_exact_num_of_dupes(word, 2))
-        .count();
-
-    let num_three_dupes = words
-        .filter(|word| has_exact_num_of_dupes(word, 3))
-        .count();
+    let (num_two_dupes, num_three_dupes) = input
+        .lines()
+        .fold((0, 0), |(twos, threes), word| {
+            (twos + has_exact_num_of_dupes(word, 2) as usize,
+            threes + has_exact_num_of_dupes(word, 3) as usize)
+        });
 
     num_two_dupes * num_three_dupes
 }

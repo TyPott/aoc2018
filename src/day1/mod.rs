@@ -3,7 +3,7 @@ use std::collections::HashSet;
 // This is not the best way of doing file I/O,
 // but it's fine here. The puzzle here isn't about
 // proper error handling
-const INPUT: &str = include_str!("input");
+static INPUT: &str = include_str!("input");
 
 pub fn solve() {
     println!("Day 1, Part 1: {}", part1(INPUT));
